@@ -762,3 +762,25 @@ h1 {
         padding: 12px 20px;
     }
 }
+
+.address-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid rgba(244, 196, 48, 0.3);
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    font-family: inherit;
+}
+
+.address-input:focus {
+    outline: none;
+    border-color: var(--mexican-gold);
+    box-shadow: 0 0 0 3px rgba(244, 196, 48, 0.15);
+}
+
+.address-input::placeholder {
+    color: var(--mexican-brown);
+    opacity: 0.7;
+}

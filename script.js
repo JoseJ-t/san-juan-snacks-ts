@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. FILTROS DE CATEGORÍAS
     const filterBtns = document.querySelectorAll('.filter-btn');
     const productCards = document.querySelectorAll('.product-card');
-    
+
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             // Activar botón seleccionado
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
+
             // Filtrar productos
             const filterValue = btn.getAttribute('data-filter');
             productCards.forEach((card, index) => {
@@ -32,14 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => card.style.display = 'none', 300);
                 }
             });
-            
+
             // 🔥 AUTO-CERRAR MENÚ MÓVIL
             const filtersMenu = document.getElementById('filtersMenu');
             const menuToggle = document.getElementById('menuToggle');
-            
+
             if (filtersMenu && filtersMenu.classList.contains('open')) {
                 filtersMenu.classList.remove('open');
-                
+
                 // Restaurar icono hamburguesa
                 const icon = menuToggle?.querySelector('i');
                 if (icon) {
@@ -226,23 +226,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 8. WHATSAPP CARRITO FINAL
+    // 8. WHATSAPP CARRITO FINAL - CON DIRECCIÓN
     document.getElementById('whatsappCart')?.addEventListener('click', () => {
         if (cart.length === 0) {
             alert('¡Tu carrito está vacío! 🛒');
             return;
         }
         
-        let message = 'Hola! 😊\n\n🛒 *MI PEDIDO COMPLETO:*\n\n';
+        // ✅ VERIFICAR DIRECCIÓN
+        const address = document.getElementById('customerAddress').value.trim();
+        if (!address) {
+            alert('😊 Por favor escribe tu dirección exacta (calle, número, colonia)');
+            document.getElementById('customerAddress').focus();
+            return;
+        }
+        
+        let message = 'Hola! 😊\n\n🛒 *MI PEDIDO:*\n\n';
         cart.forEach(item => {
             message += `• ${item.name} x${item.quantity}\n`;
             item.options.forEach(opt => message += `  ${opt}\n`);
             message += `  Subtotal: $${item.price * item.quantity}\n\n`;
         });
-        message += `💰 *TOTAL: $${document.getElementById('cartTotal').textContent}*`;
-        message += `\n\n📍 San Juan de los Lagos, Jalisco`;
         
-        const phone = '3951024699'; // ← ¡CAMBIAR TU NÚMERO!
+        message += `💰 *TOTAL: $${document.getElementById('cartTotal').textContent}*\n\n`;
+        message += `📍 *DIRECCIÓN:* ${address.toUpperCase()}\n`;
+        message += `🚚 Entrega gratis • 20 min`;
+        
+        const phone = '3951024699';
         window.open(`https://wa.me/52${phone}?text=${encodeURIComponent(message)}`, '_blank');
     });
     
