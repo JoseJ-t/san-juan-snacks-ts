@@ -24,7 +24,7 @@
             <button class="filter-btn" data-filter="frescos"><i class="fas fa-lemon"></i> Frescos</button>
             <button class="filter-btn" data-filter="dulces"><i class="fas fa-cookie"></i> Dulces</button>
             <button class="filter-btn" data-filter="tacos"><i class="fas fa-taco"></i> Tacos</button>
-            <button class="filter-btn" data-filter="leches"><i class="fas fa-mug-hot"></i> Leches</button>
+            <button class="filter-btn" data-filter="helados"><i class="fas fa-ice-cream"></i> Helados</button>
         </div>
 
         <main class="products-grid">
@@ -68,10 +68,10 @@
         </div>
 
         <!-- LECHES SANTA CLARA CON TOPPINGS -->
-        <div class="product-card leches" data-category="leches">
+        <div class="product-card leches" data-category="helados">
             <div class="product-image">
                 <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Leches">
-                <div class="category-badge"><i class="fas fa-mug-hot"></i> Leche</div>
+                <div class="category-badge"><i class="fas fa-ice-cream"></i> Helados</div>
             </div>
             <div class="product-info">
                 <h3>Leches Santa Clara 1L</h3>
@@ -92,7 +92,7 @@
                 <div class="options-group">
                     <label><i class="fas fa-seedling"></i> Topping:</label>
                     <select class="option-select" data-option="topping">
-                        <option value="sin topping ($0)">Sin topping - $0</option>
+                        <option value="sin topping (+$0)">Sin topping - $0</option>
                         <option value="fresa picada (+$8)">Fresa picada - +$8</option>
                         <option value="galletas (+$6)">Galletas - +$6</option>
                         <option value="chocolate rallado (+$7)">Chocolate rallado - +$7</option>
@@ -287,12 +287,35 @@
         <footer class="contact">
             <div class="contact-info">
                 <i class="fas fa-phone"></i>
-                <span>(395) 123-4567</span>
+                <span>(52) 395-102-4699</span>
             </div>
             <div class="delivery">Entrega gratis en San Juan • 20 minutos</div>
         </footer>
     </div>
 
     <script src="script.js"></script>
+
+        <!-- CARRITO FLOTANTE -->
+    <div class="cart-panel" id="cartPanel">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Mi Pedido</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-total">
+            <strong>Total: $<span id="cartTotal">0</span></strong>
+        </div>
+        <div class="cart-actions">
+            <button class="whatsapp-cart" id="whatsappCart">
+                <i class="fab fa-whatsapp"></i> Enviar Pedido
+            </button>
+        </div>
+    </div>
+    
+    <!-- FAB BUTTON -->
+    <button class="fab-cart" id="cartToggle">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
 </body>
 </html>

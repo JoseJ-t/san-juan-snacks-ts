@@ -1,13 +1,21 @@
+// ============================================
+// SCRIPT COMPLETO - ORDENADO
+// ============================================
+
 document.addEventListener('DOMContentLoaded', function() {
-    // === FILTROS ===
+    
+    // 1. VARIABLES GLOBALES
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // 2. FILTROS DE CATEGORÍAS
     const filterBtns = document.querySelectorAll('.filter-btn');
     const productCards = document.querySelectorAll('.product-card');
-
+    
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
+            
             const filterValue = btn.getAttribute('data-filter');
             productCards.forEach((card, index) => {
                 if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
@@ -24,9 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
-
-    // === PRECIOS DINÁMICOS ===
-    // === PRECIO TOTAL DINÁMICO (NUEVO) ===
+    
+    // 3. PRECIO DINÁMICO (múltiples selectores)
     function updatePrice(productInfo) {
         let basePrice = 0;
         let extraPrice = 0;
@@ -50,44 +57,150 @@ document.addEventListener('DOMContentLoaded', function() {
         priceEl.textContent = `$${totalPrice}`;
         priceEl.dataset.total = totalPrice;
     }
-
-    // Actualizar precio al cambiar cualquier selector
+    
     document.querySelectorAll('.option-select').forEach(select => {
         select.addEventListener('change', function() {
             const productInfo = this.closest('.product-info');
             updatePrice(productInfo);
         });
     });
-
-    // === WHATSAPP CON TODAS LAS OPCIONES ===
-    document.querySelectorAll('.whatsapp-btn').forEach(btn => {
+    
+    // 4. FUNCIONES DEL CARRITO
+    function renderCart() {
+        const cartItemsEl = document.getElementById('cartItems');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const cartCountEl = document.getElementById('cartCount');
+        
+        cartItemsEl.innerHTML = '';
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'cart-item';
+            itemEl.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>${item.options.join(', ')}</p>
+                    <small>$${item.price} c/u</small>
+                </div>
+                <div class="cart-item-controls">
+                    <div class="qty-controls">
+                        <button class="qty-btn" data-index="${index}">-</button>
+                        <input type="number" class="qty-input" value="${item.quantity}" min="1" data-index="${index}">
+                        <button class="qty-btn plus" data-index="${index}">+</button>
+                    </div>
+                    <button class="remove-item" data-index="${index}">Eliminar</button>
+                </div>
+            `;
+            cartItemsEl.appendChild(itemEl);
+            total += item.price * item.quantity;
+        });
+        
+        cartTotalEl.textContent = total;
+        cartCountEl.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    
+    // 5. ABRIR/CERRAR CARRITO
+    document.getElementById('cartToggle')?.addEventListener('click', () => {
+        document.getElementById('cartPanel').classList.toggle('open');
+    });
+    
+    document.querySelector('.close-cart')?.addEventListener('click', () => {
+        document.getElementById('cartPanel').classList.remove('open');
+    });
+    
+    // 6. AGREGAR AL CARRITO
+    document.querySelectorAll('.whatsapp-btn, .add-to-cart').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             
-            const productName = this.getAttribute('data-product');
             const productInfo = this.closest('.product-info');
-            const totalPrice = productInfo.querySelector('.dynamic-price').dataset.total;
+            const productName = this.getAttribute('data-product');
+            const price = parseInt(productInfo.querySelector('.dynamic-price').dataset.total);
+            const image = productInfo.previousElementSibling.querySelector('img').src;
+            const quantityInput = productInfo.querySelector('.qty-input');
+            const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
             
-            // Recolectar TODAS las opciones
             const options = [];
-            productInfo.querySelectorAll('.options-group').forEach((group, index) => {
-                const label = group.querySelector('label').textContent.trim();
-                const select = group.querySelector('.option-select');
-                const optionText = select.options[select.selectedIndex].text;
-                options.push(`${label}: ${optionText}`);
+            productInfo.querySelectorAll('.options-group label').forEach(label => {
+                const select = label.nextElementSibling;
+                options.push(label.textContent.trim() + ': ' + select.options[select.selectedIndex].text);
             });
             
-            const message = `Hola! 😊\n\n🛒 *PEDIDO:*\n${productName}\n\n${options.join('\n')}\n\n💰 *Total: $${totalPrice}*\n\n📍 San Juan de los Lagos`;
+            // Buscar si ya existe
+            const existingIndex = cart.findIndex(item => 
+                item.name === productName && JSON.stringify(item.options) === JSON.stringify(options)
+            );
             
-            const phone = '3951234567'; // ← CAMBIA TU NÚMERO
-            const whatsappURL = `https://wa.me/52${phone}?text=${encodeURIComponent(message)}`;
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += quantity;
+            } else {
+                cart.push({
+                    name: productName,
+                    price: price,
+                    quantity: quantity,
+                    options: options,
+                    image: image
+                });
+            }
             
-            window.open(whatsappURL, '_blank');
+            renderCart();
+            alert(`¡${quantity}x ${productName} agregado! 🛒`);
         });
     });
-
-    // Inicializar precios
+    
+    // 7. CONTROLES DEL CARRITO
+    document.addEventListener('click', function(e) {
+        const index = e.target.dataset.index;
+        
+        // Botones +/-
+        if (e.target.classList.contains('qty-btn')) {
+            const input = document.querySelector(`[data-index="${index}"].qty-input`);
+            let qty = parseInt(input.value);
+            
+            if (e.target.classList.contains('plus')) {
+                qty++;
+            } else if (qty > 1) {
+                qty--;
+            }
+            
+            input.value = qty;
+            cart[index].quantity = qty;
+            renderCart();
+        }
+        
+        // Eliminar item
+        if (e.target.classList.contains('remove-item')) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+    });
+    
+    // 8. WHATSAPP CARRITO FINAL
+    document.getElementById('whatsappCart')?.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('¡Tu carrito está vacío! 🛒');
+            return;
+        }
+        
+        let message = 'Hola! 😊\n\n🛒 *MI PEDIDO COMPLETO:*\n\n';
+        cart.forEach(item => {
+            message += `• ${item.name} x${item.quantity}\n`;
+            item.options.forEach(opt => message += `  ${opt}\n`);
+            message += `  Subtotal: $${item.price * item.quantity}\n\n`;
+        });
+        message += `💰 *TOTAL: $${document.getElementById('cartTotal').textContent}*`;
+        message += `\n\n📍 San Juan de los Lagos, Jalisco`;
+        
+        const phone = '3951025699'; // ← ¡CAMBIAR TU NÚMERO!
+        window.open(`https://wa.me/52${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    });
+    
+    // 9. INICIALIZAR TODO
     document.querySelectorAll('.product-info').forEach(productInfo => {
         updatePrice(productInfo);
     });
+    renderCart();
 });
