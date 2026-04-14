@@ -10,7 +10,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header>
             <div class="logo">
                 <i class="fas fa-utensils"></i>
@@ -19,186 +18,265 @@
             <p class="location">San Juan de los Lagos, Jalisco</p>
         </header>
 
-        <!-- Filtros de Categorías -->
         <div class="filters">
-            <button class="filter-btn active" data-filter="all">
-                <i class="fas fa-utensils"></i> Todos
-            </button>
-            <button class="filter-btn" data-filter="picantes">
-                <i class="fas fa-fire"></i> Picantes
-            </button>
-            <button class="filter-btn" data-filter="frescos">
-                <i class="fas fa-lemon"></i> Frescos
-            </button>
-            <button class="filter-btn" data-filter="dulces">
-                <i class="fas fa-cookie"></i> Dulces
-            </button>
-            <button class="filter-btn" data-filter="tacos">
-                <i class="fas fa-taco"></i> Tacos
-            </button>
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-utensils"></i> Todos</button>
+            <button class="filter-btn" data-filter="picantes"><i class="fas fa-fire"></i> Picantes</button>
+            <button class="filter-btn" data-filter="frescos"><i class="fas fa-lemon"></i> Frescos</button>
+            <button class="filter-btn" data-filter="dulces"><i class="fas fa-cookie"></i> Dulces</button>
+            <button class="filter-btn" data-filter="tacos"><i class="fas fa-taco"></i> Tacos</button>
+            <button class="filter-btn" data-filter="leches"><i class="fas fa-mug-hot"></i> Leches</button>
         </div>
 
-        <!-- Grid de Productos Individuales -->
         <main class="products-grid">
-            <!-- Producto 1 -->
+        <!-- TOSTIAGUACHILES COMPLETO (VERDE/NEGRO/HABANERO + DORITOS/TOSTITOS) -->
+        <div class="product-card picantes" data-category="picantes">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1621996346565-e3adc652b378?w=400&h=300&fit=crop" alt="Tostiaguachiles">
+                <div class="category-badge"><i class="fas fa-fire"></i> Picante</div>
+            </div>
+            <div class="product-info">
+                <h3>Tostiaguachiles</h3>
+                <p class="ingredients">Aguachile de camarón con totopos</p>
+                
+                <!-- Selector 1: Sabor de Aguachile -->
+                <div class="options-group">
+                    <label><i class="fas fa-pepper-hot"></i> Sabor Aguachile:</label>
+                    <select class="option-select" data-option="sabor">
+                        <option value="verde ($45)">Verde - $45</option>
+                        <option value="negro ($48)">Negro - $48</option>
+                        <option value="habanero ($52)">Habanero - $52</option>
+                    </select>
+                </div>
+
+                <!-- Selector 2: Tipo de Totopo -->
+                <div class="options-group">
+                    <label><i class="fas fa-cookie-bite"></i> Totopos:</label>
+                    <select class="option-select" data-option="totopos">
+                        <option value="doritos ($0)">Doritos - Incluido</option>
+                        <option value="tostitos verdes (+$5)">Tostitos Verdes - +$5</option>
+                        <option value="tostitos morados (+$5)">Tostitos Morados - +$5</option>
+                    </select>
+                </div>
+
+                <div class="product-footer">
+                    <div class="price dynamic-price">$45</div>
+                    <a href="#" class="whatsapp-btn" data-product="Tostiaguachiles">
+                        <i class="fab fa-whatsapp"></i> Pedir
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- LECHES SANTA CLARA CON TOPPINGS -->
+        <div class="product-card leches" data-category="leches">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Leches">
+                <div class="category-badge"><i class="fas fa-mug-hot"></i> Leche</div>
+            </div>
+            <div class="product-info">
+                <h3>Leches Santa Clara 1L</h3>
+                <p class="ingredients">Botella fría • Leche purísima Jalisco</p>
+                
+                <!-- Selector 1: Sabor -->
+                <div class="options-group">
+                    <label><i class="fas fa-ice-cream"></i> Sabor:</label>
+                    <select class="option-select" data-option="sabor">
+                        <option value="chocolate ($28)">Chocolate - $28</option>
+                        <option value="fresa ($28)">Fresa - $28</option>
+                        <option value="vainilla ($28)">Vainilla - $28</option>
+                        <option value="capuccino ($30)">Capuccino - $30</option>
+                    </select>
+                </div>
+
+                <!-- Selector 2: Topping -->
+                <div class="options-group">
+                    <label><i class="fas fa-seedling"></i> Topping:</label>
+                    <select class="option-select" data-option="topping">
+                        <option value="sin topping ($0)">Sin topping - $0</option>
+                        <option value="fresa picada (+$8)">Fresa picada - +$8</option>
+                        <option value="galletas (+$6)">Galletas - +$6</option>
+                        <option value="chocolate rallado (+$7)">Chocolate rallado - +$7</option>
+                    </select>
+                </div>
+
+                <div class="product-footer">
+                    <div class="price dynamic-price">$28</div>
+                    <a href="#" class="whatsapp-btn" data-product="Leches Santa Clara">
+                        <i class="fab fa-whatsapp"></i> Pedir
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+            <!-- Chicharrones con opciones de salsa -->
             <div class="product-card picantes" data-category="picantes">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1603048297194-9bef403afef3?w=400&h=300&fit=crop" alt="Chicharrones">
-                    <div class="category-badge">
-                        <i class="fas fa-fire"></i> Picante
-                    </div>
+                    <div class="category-badge"><i class="fas fa-fire"></i> Picante</div>
                 </div>
                 <div class="product-info">
                     <h3>Chicharrones en Salsa</h3>
-                    <p class="ingredients">Chicharrones crujientes • Salsa de árbol • Limón • Cebolla</p>
+                    <p class="ingredients">Chicharrones crujientes con salsa casera</p>
+                    
+                    <!-- Selector de Salsa -->
+                    <div class="options-group">
+                        <label>Salsa:</label>
+                        <select class="option-select" data-option="salsa">
+                            <option value="árbol ($25)">Árbol - $25</option>
+                            <option value="chipotle ($27)">Chipotle - $27</option>
+                            <option value="habanero ($30)">Habanero - $30</option>
+                        </select>
+                    </div>
+
                     <div class="product-footer">
-                        <div class="price">$25</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Chicharrones%20en%20Salsa%20($25)" 
-                           class="whatsapp-btn" target="_blank">
+                        <div class="price dynamic-price">$25</div>
+                        <a href="#" class="whatsapp-btn" data-product="Chicharrones">
                             <i class="fab fa-whatsapp"></i> Pedir
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Producto 2 -->
+            <!-- Jícama con opciones de topping -->
             <div class="product-card frescos" data-category="frescos">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1601001735390-6e6a59a9e825?w=400&h=300&fit=crop" alt="Jícama">
-                    <div class="category-badge">
-                        <i class="fas fa-lemon"></i> Fresco
-                    </div>
+                    <div class="category-badge"><i class="fas fa-lemon"></i> Fresco</div>
                 </div>
                 <div class="product-info">
-                    <h3>Jícama con Limón</h3>
-                    <p class="ingredients">Jícama rallada • Tajín • Chamoy • Limón fresco</p>
+                    <h3>Jícama Rallada</h3>
+                    <p class="ingredients">Jícama fresca con limón y sal</p>
+                    
+                    <!-- Selector de Topping -->
+                    <div class="options-group">
+                        <label>Topping:</label>
+                        <select class="option-select" data-option="topping">
+                            <option value="tajín ($20)">Tajín - $20</option>
+                            <option value="chamoy ($22)">Chamoy - $22</option>
+                            <option value="michi ($25)">Michi completo - $25</option>
+                        </select>
+                    </div>
+
                     <div class="product-footer">
-                        <div class="price">$20</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Jícama%20con%20Limón%20($20)" 
-                           class="whatsapp-btn" target="_blank">
+                        <div class="price dynamic-price">$20</div>
+                        <a href="#" class="whatsapp-btn" data-product="Jícama">
                             <i class="fab fa-whatsapp"></i> Pedir
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Producto 3 -->
+            <!-- LECHES SANTA CLARA (EJEMPLO PRINCIPAL) -->
+            <div class="product-card leches" data-category="leches">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Leches Santa Clara">
+                    <div class="category-badge"><i class="fas fa-mug-hot"></i> Leche</div>
+                </div>
+                <div class="product-info">
+                    <h3>Leches Santa Clara</h3>
+                    <p class="ingredients">Botella 1L • Fría • Original Jalisco</p>
+                    
+                    <!-- Selector de SABOR -->
+                    <div class="options-group">
+                        <label>Sabor:</label>
+                        <select class="option-select" data-option="sabor">
+                            <option value="chocolate ($28)">Chocolate - $28</option>
+                            <option value="fresa ($28)">Fresa - $28</option>
+                            <option value="vainilla ($28)">Vainilla - $28</option>
+                            <option value="capuccino ($30)">Capuccino - $30</option>
+                        </select>
+                    </div>
+
+                    <div class="product-footer">
+                        <div class="price dynamic-price">$28</div>
+                        <a href="#" class="whatsapp-btn" data-product="Leches Santa Clara">
+                            <i class="fab fa-whatsapp"></i> Pedir
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Churros con relleno -->
             <div class="product-card dulces" data-category="dulces">
                 <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Churros">
-                    <div class="category-badge">
-                        <i class="fas fa-cookie"></i> Dulce
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=300&fit=crop" alt="Churros">
+                    <div class="category-badge"><i class="fas fa-cookie"></i> Dulce</div>
                 </div>
                 <div class="product-info">
-                    <h3>Churros Rellenos</h3>
-                    <p class="ingredients">Cajeta jalisciense • Azúcar • Canela • Chocolate</p>
+                    <h3>Churros Rellenos (6 pzs)</h3>
+                    <p class="ingredients">Crujientes con azúcar y canela</p>
+                    
+                    <!-- Selector de Relleno -->
+                    <div class="options-group">
+                        <label>Relleno:</label>
+                        <select class="option-select" data-option="relleno">
+                            <option value="cajeta ($28)">Cajeta - $28</option>
+                            <option value="chocolate ($30)">Chocolate - $30</option>
+                            <option value="dulce de leche ($32)">Dulce de leche - $32</option>
+                        </select>
+                    </div>
+
                     <div class="product-footer">
-                        <div class="price">$28</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Churros%20Rellenos%20($28)" 
-                           class="whatsapp-btn" target="_blank">
+                        <div class="price dynamic-price">$28</div>
+                        <a href="#" class="whatsapp-btn" data-product="Churros">
                             <i class="fab fa-whatsapp"></i> Pedir
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Producto 4 -->
+            <!-- Torta Ahogada con carne -->
             <div class="product-card tacos" data-category="tacos">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1596799320515-e2caddf41099?w=400&h=300&fit=crop" alt="Torta Ahogada">
-                    <div class="category-badge">
-                        <i class="fas fa-taco"></i> Tacos
-                    </div>
+                    <div class="category-badge"><i class="fas fa-taco"></i> Tacos</div>
                 </div>
                 <div class="product-info">
                     <h3>Torta Ahogada Mini</h3>
-                    <p class="ingredients">Carnitas • Frijoles • Salsa ahogada • Cebolla</p>
+                    <p class="ingredients">Clásica tapatía con salsa ahogada</p>
+                    
+                    <!-- Selector de Carne -->
+                    <div class="options-group">
+                        <label>Proteína:</label>
+                        <select class="option-select" data-option="proteina">
+                            <option value="carnitas ($45)">Carnitas - $45</option>
+                            <option value="pollo ($42)">Pollo - $42</option>
+                            <option value="queso ($40)">Queso - $40</option>
+                        </select>
+                    </div>
+
                     <div class="product-footer">
-                        <div class="price">$45</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Torta%20Ahogada%20Mini%20($45)" 
-                           class="whatsapp-btn" target="_blank">
+                        <div class="price dynamic-price">$45</div>
+                        <a href="#" class="whatsapp-btn" data-product="Torta Ahogada">
                             <i class="fab fa-whatsapp"></i> Pedir
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Más productos... -->
-            <div class="product-card picantes" data-category="picantes">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1621996346565-e3adc652b378?w=400&h=300&fit=crop" alt="Tostadas">
-                    <div class="category-badge">
-                        <i class="fas fa-fire"></i> Picante
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3>Tostadas de Tinga</h3>
-                    <p class="ingredients">Pollo deshebrado • Chipotle • Crema • Queso</p>
-                    <div class="product-footer">
-                        <div class="price">$35</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Tostadas%20de%20Tinga%20($35)" 
-                           class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card frescos" data-category="frescos">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1626074566957-26673d963935?w=400&h=300&fit=crop" alt="Elote">
-                    <div class="category-badge">
-                        <i class="fas fa-lemon"></i> Fresco
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3>Elote en Vaso</h3>
-                    <p class="ingredients">Mayonesa • Queso cotija • Chile piquín • Limón</p>
-                    <div class="product-footer">
-                        <div class="price">$32</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Elote%20en%20Vaso%20($32)" 
-                           class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card dulces" data-category="dulces">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" alt="Glorias">
-                    <div class="category-badge">
-                        <i class="fas fa-cookie"></i> Dulce
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h3>Glorias de Leche</h3>
-                    <p class="ingredients">Coco rallado • Leche quemada • Nueces</p>
-                    <div class="product-footer">
-                        <div class="price">$22</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Glorias%20de%20Leche%20($22)" 
-                           class="whatsapp-btn" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Quesabirria con tamaño -->
             <div class="product-card tacos" data-category="tacos">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1603277053376-48d2b4268224?w=400&h=300&fit=crop" alt="Quesabirria">
-                    <div class="category-badge">
-                        <i class="fas fa-taco"></i> Tacos
-                    </div>
+                    <div class="category-badge"><i class="fas fa-taco"></i> Tacos</div>
                 </div>
                 <div class="product-info">
                     <h3>Quesabirria</h3>
-                    <p class="ingredients">Carne de res • Queso derretido • Consomé</p>
+                    <p class="ingredients">Con consomé • Queso derretido</p>
+                    
+                    <!-- Selector de Cantidad -->
+                    <div class="options-group">
+                        <label>Cantidad:</label>
+                        <select class="option-select" data-option="cantidad">
+                            <option value="3 tacos ($40)">3 tacos - $40</option>
+                            <option value="5 tacos ($65)">5 tacos - $65</option>
+                            <option value="8 tacos ($100)">8 tacos - $100</option>
+                        </select>
+                    </div>
+
                     <div class="product-footer">
-                        <div class="price">$40</div>
-                        <a href="https://wa.me/523951234567?text=Hola!%20Quiero%20pedir%20Quesabirria%20($40)" 
-                           class="whatsapp-btn" target="_blank">
+                        <div class="price dynamic-price">$40</div>
+                        <a href="#" class="whatsapp-btn" data-product="Quesabirria">
                             <i class="fab fa-whatsapp"></i> Pedir
                         </a>
                     </div>
@@ -206,7 +284,6 @@
             </div>
         </main>
 
-        <!-- Footer -->
         <footer class="contact">
             <div class="contact-info">
                 <i class="fas fa-phone"></i>
