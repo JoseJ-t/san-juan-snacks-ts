@@ -647,3 +647,118 @@ h1 {
         width: 100vw;
     }
 }
+
+/* MENU HAMBURGUESA MODERNO */
+.mobile-menu-toggle {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.menu-toggle {
+    width: 100%;
+    background: var(--white);
+    border: 2px solid rgba(244, 196, 48, 0.3);
+    color: var(--mexican-brown);
+    padding: 16px 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px var(--shadow-light);
+}
+
+.menu-toggle:hover {
+    background: var(--mexican-gold);
+    border-color: var(--mexican-gold);
+    transform: translateY(-2px);
+}
+
+.filters-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0;
+    transition: all 0.4s ease;
+}
+
+/* MÓVIL SOLO */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .filters-container {
+        margin-bottom: 80px; /* Espacio para menú desplegado */
+    }
+    
+    .filters {
+        /* ESTADO CERRADO por defecto */
+        position: absolute;
+        top: calc(100% + 24px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 95%;
+        max-width: 380px;
+        background: var(--white);
+        flex-direction: column;
+        gap: 2px;
+        padding: 0;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px var(--shadow-medium);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 100;
+    }
+    
+    /* ESTADO ABIERTO */
+    .filters.open {
+        max-height: 450px;
+        padding: 20px;
+        opacity: 1;
+        visibility: visible;
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        width: 100% !important;
+        justify-content: flex-start !important;
+        padding: 16px 20px !important;
+        border-radius: 12px !important;
+        border: 2px solid rgba(244, 196, 48, 0.2) !important;
+        margin: 0 !important;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 8px rgba(244, 196, 48, 0.1);
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: linear-gradient(135deg, var(--mexican-gold), #ffeaa7) !important;
+        transform: translateX(8px) !important;
+        border-color: var(--mexican-gold) !important;
+    }
+}
+
+/* DESKTOP: Filtros normales */
+@media (min-width: 769px) {
+    .filters {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    
+    .filter-btn {
+        min-width: 120px;
+        padding: 12px 20px;
+    }
+}

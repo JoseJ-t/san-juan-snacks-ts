@@ -13,9 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+            // Activar botón seleccionado
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
+            // Filtrar productos
             const filterValue = btn.getAttribute('data-filter');
             productCards.forEach((card, index) => {
                 if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
@@ -30,8 +32,54 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => card.style.display = 'none', 300);
                 }
             });
+            
+            // 🔥 AUTO-CERRAR MENÚ MÓVIL
+            const filtersMenu = document.getElementById('filtersMenu');
+            const menuToggle = document.getElementById('menuToggle');
+            
+            if (filtersMenu && filtersMenu.classList.contains('open')) {
+                filtersMenu.classList.remove('open');
+                
+                // Restaurar icono hamburguesa
+                const icon = menuToggle?.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
         });
     });
+
+    // MENU HAMBURGUESA MÓVIL
+    const menuToggle = document.getElementById('menuToggle');
+    const filtersMenu = document.getElementById('filtersMenu');
+
+    if (menuToggle && filtersMenu) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filtersMenu.classList.toggle('open');
+
+            // Cambiar icono
+            const icon = menuToggle.querySelector('i');
+            if (filtersMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Cerrar al click fuera
+        document.addEventListener('click', (e) => {
+            if (!filtersMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                filtersMenu.classList.remove('open');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
     
     // 3. PRECIO DINÁMICO (múltiples selectores)
     function updatePrice(productInfo) {

@@ -8,24 +8,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-utensils"></i>
-                <h1>San Juan Snacks</h1>
-            </div>
-            <p class="location">San Juan de los Lagos, Jalisco</p>
-        </header>
+      <body>
+          <div class="container">
+              <header>
+                  <div class="logo">
+                      <i class="fas fa-utensils"></i>
+                      <h1>San Juan Snacks</h1>
+                  </div>
+                  <p class="location">San Juan de los Lagos, Jalisco</p>
+              </header>
+            
+              <div class="mobile-menu-toggle">
+          <button class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+              <span>Categorías</span>
+          </button>
+      </div>
 
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all"><i class="fas fa-utensils"></i> Todos</button>
-            <button class="filter-btn" data-filter="picantes"><i class="fas fa-fire"></i> Picantes</button>
-            <button class="filter-btn" data-filter="frescos"><i class="fas fa-lemon"></i> Frescos</button>
-            <button class="filter-btn" data-filter="dulces"><i class="fas fa-cookie"></i> Dulces</button>
-            <button class="filter-btn" data-filter="tacos"><i class="fas fa-taco"></i> Tacos</button>
-            <button class="filter-btn" data-filter="helados"><i class="fas fa-ice-cream"></i> Helados</button>
-        </div>
+      <div class="filters-container">
+          <div class="filters" id="filtersMenu">
+              <button class="filter-btn active" data-filter="all">
+                  <i class="fas fa-utensils"></i> Todos
+              </button>
+              <button class="filter-btn" data-filter="picantes">
+                  <i class="fas fa-fire"></i> Picantes
+              </button>
+              <button class="filter-btn" data-filter="frescos">
+                  <i class="fas fa-lemon"></i> Frescos
+              </button>
+              <button class="filter-btn" data-filter="dulces">
+                  <i class="fas fa-cookie"></i> Dulces
+              </button>
+              <button class="filter-btn" data-filter="tacos">
+                  <i class="fas fa-taco"></i> Tacos
+              </button>
+              <button class="filter-btn" data-filter="leches">
+                  <i class="fas fa-mug-hot"></i> Leches
+              </button>
+          </div>
+      </div>
 
         <main class="products-grid">
         <!-- TOSTIAGUACHILES COMPLETO (VERDE/NEGRO/HABANERO + DORITOS/TOSTITOS) -->
@@ -311,7 +332,7 @@
             </button>
         </div>
     </div>
-    
+
     <!-- FAB BUTTON -->
     <button class="fab-cart" id="cartToggle">
         <i class="fas fa-shopping-cart"></i>
