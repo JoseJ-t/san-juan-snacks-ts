@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
         message += `💰 *TOTAL: $${document.getElementById('cartTotal').textContent}*`;
         message += `\n\n📍 San Juan de los Lagos, Jalisco`;
         
-        const phone = '3951025699'; // ← ¡CAMBIAR TU NÚMERO!
+        const phone = '3951024699'; // ← ¡CAMBIAR TU NÚMERO!
         window.open(`https://wa.me/52${phone}?text=${encodeURIComponent(message)}`, '_blank');
     });
     
